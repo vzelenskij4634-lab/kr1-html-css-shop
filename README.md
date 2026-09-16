@@ -29,3 +29,8 @@
 ## Текущий статус
 
 Создана базовая структура проекта.
+
+## Ссылка на опубликованный проект
+
+GitHub Pages: https://vzelenskij4634-lab.github.io/kr1-html-css-shop/
+
