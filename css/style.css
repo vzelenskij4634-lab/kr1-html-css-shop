@@ -267,6 +267,7 @@ a:focus-visible {
   Карточка товара.
 */
 .product-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -320,6 +321,10 @@ a:focus-visible {
 
 .catalog-filters {
   grid-area: filters;
+  position: sticky;
+  top: var(--space-md);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -403,6 +408,8 @@ a:focus-visible {
 */
 .order-dialog {
   width: min(100% - 32px, 560px);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
   padding: var(--space-lg);
   border: none;
   border-radius: var(--radius-lg);
@@ -508,4 +515,209 @@ a:focus-visible {
   padding: var(--space-md);
   border-left: 4px solid var(--color-success);
   background-color: var(--color-success-bg);
+}
+
+/* ===============================
+   6. Самостоятельные доработки КР №1
+   =============================== */
+
+.site-main {
+  min-height: 55vh;
+}
+
+.site-footer {
+  padding-bottom: 96px;
+}
+
+.site-footer__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 20;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  color: var(--color-white);
+  transform: translateY(0);
+}
+
+.back-to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 10;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 18%);
+}
+
+.back-to-top:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+}
+
+.product-card__image {
+  display: block;
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  background-color: var(--color-surface-accent);
+  border-radius: var(--radius-sm);
+}
+
+.product-card__category {
+  position: absolute;
+  top: var(--space-lg);
+  left: var(--space-lg);
+  padding: var(--space-xs) var(--space-sm);
+  margin: 0;
+  color: var(--color-primary-dark);
+  background-color: var(--color-white);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+}
+
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: var(--space-md) 0 var(--space-lg);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.review-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.review-card__title {
+  margin-top: 0;
+}
+
+.review-card__caption {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.faq__item {
+  margin-bottom: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.faq__question {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.faq__question:focus-visible,
+.table-scroll:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.faq__answer {
+  margin-bottom: 0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+}
+
+.product-table {
+  width: 100%;
+  margin-bottom: var(--space-lg);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.product-table__caption {
+  padding: var(--space-sm) 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+.product-table th,
+.product-table td {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.product-table th {
+  background-color: var(--color-surface-accent);
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: var(--space-xl);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  scroll-margin-top: var(--space-md);
+}
+
+.product-detail__image {
+  width: 100%;
+  height: auto;
+}
+
+.product-detail__title {
+  margin-top: 0;
+}
+
+.product-detail__price {
+  color: var(--color-primary-dark);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.order-page {
+  max-width: 680px;
+}
+
+.order-form__error {
+  margin: var(--space-xs) 0 0;
+  color: var(--color-danger);
+  font-weight: bold;
+}
+
+.order-form__summary {
+  padding: var(--space-md);
+  color: var(--color-danger);
+  border-left: 4px solid var(--color-danger);
+  background-color: var(--color-surface);
+}
+
+.order-form__actions {
+  flex-wrap: wrap;
+}
+
+/* Ошибка должна оставаться видна и при наведении на поле. */
+.order-form__input[aria-invalid="true"],
+.order-form__select[aria-invalid="true"],
+.order-form__textarea[aria-invalid="true"] {
+  border: 2px solid var(--color-danger);
 }
