@@ -170,6 +170,8 @@ a:focus-visible {
 .site-nav__list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: var(--space-md);
 
   padding: 0;
@@ -178,9 +180,17 @@ a:focus-visible {
 }
 
 
+.site-nav__list a {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
 .site-nav__list a:hover {
-  color: var(--color-primary-dark);
-  text-decoration: underline;
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 .site-nav__list a[aria-current="page"] {
@@ -232,13 +242,18 @@ a:focus-visible {
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  gap: var(--space-lg);
 }
 
 /*
   Карточка товара.
 */
 .product-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  min-width: 0;
+  margin-bottom: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -249,8 +264,15 @@ a:focus-visible {
   border-color: var(--color-primary);
 }
 
-.product-card__title {
-  margin-top: 0;
+.product-card__title,
+.product-card__description,
+.product-card__price {
+  margin: 0;
+}
+
+.product-card .button {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .product-card__description {
@@ -259,6 +281,82 @@ a:focus-visible {
 
 .product-card__price {
   font-weight: bold;
+}
+
+/*
+  Каталог: боковая область фильтров и список товаров.
+*/
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-areas: "filters products";
+  gap: var(--space-lg);
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  align-items: start;
+}
+
+.catalog-filters {
+  grid-area: filters;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.catalog-products {
+  grid-area: products;
+  min-width: 0;
+}
+
+.catalog-filters h2,
+.catalog-products h2 {
+  margin-top: 0;
+}
+
+.filters-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.filters-form fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.filters-form legend {
+  font-weight: 700;
+}
+
+.filters-form label {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.filters-form input[type="number"] {
+  width: 100%;
+  padding: var(--space-sm) 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+.filters-form input[type="number"]:hover {
+  border-color: var(--color-primary);
+}
+
+.filters-form input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.filters-form__hint {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
 }
 
 /*
