@@ -64,6 +64,7 @@
 - Практическая работа 4: добавлены CSS-переменные, состояния интерфейса и упорядочена структура стилей.
 - Практическая работа 5: создана многостраничная структура сайта, добавлены единая навигация, якорные ссылки и хлебные крошки.
 - Практическая работа 6: добавлены Flexbox-навигация, внутренняя Flexbox-структура карточек и Grid-раскладка каталога с боковой формой фильтров.
+- Практическая работа 7: выполнен рефакторинг HTML-классов и CSS-селекторов по методологии БЭМ, добавлены элементы и модификаторы компонентов.
 
 ## Навигация и метаданные
 
@@ -137,15 +138,60 @@ Git-операции (создание веток, коммит, push, Pull Requ
 5. На главной нажать «Заказать»: проверить открытие и закрытие окна, валидацию и демонстрационную отправку заявки.
 6. В DevTools проверить `display: flex` у `.site-nav__list` и `.product-card`, `display: grid` у `.products-grid` и `.catalog-layout`, области `filters` и `products`, а также `gap`.
 
-## БЭМ-именование
+## БЭМ-структура проекта
 
-Для компонента карточки товара используется базовое БЭМ-именование классов:
+Компоненты оформлены как самостоятельные блоки. Элементы записываются через
+`block__element`, варианты — через `block--modifier` или
+`block__element--modifier`. Модификатор используется вместе с базовым классом.
 
-- `product-card` — блок карточки товара;
-- `product-card__title` — название товара;
-- `product-card__description` — описание товара;
-- `product-card__price` — цена товара;
-- `product-card__button` — кнопка заказа.
+| Блок | Назначение и примеры элементов |
+| --- | --- |
+| `site-header` | Шапка: `site-header__inner`, `site-header__logo` |
+| `site-nav` | Меню: `site-nav__list`, `site-nav__item`, `site-nav__link` |
+| `site-main` | Основная область страницы |
+| `breadcrumbs` | Хлебные крошки: `breadcrumbs__link`, `breadcrumbs__current` |
+| `hero` | Первый экран главной страницы |
+| `section` | Обычный раздел: `section__title` |
+| `products-grid` | Сетка карточек товаров |
+| `product-card` | Карточка: `product-card__title`, `product-card__description`, `product-card__price`, `product-card__button` |
+| `catalog-layout` | Сетка каталога с областями фильтров и товаров |
+| `catalog-filters` | Боковой блок: `catalog-filters__title` |
+| `catalog-products` | Список товаров: `catalog-products__title` |
+| `filters-form` | Фильтры: `filters-form__group`, `filters-form__legend`, `filters-form__label`, `filters-form__input`, `filters-form__checkbox`, `filters-form__hint` |
+| `aside-info` | Дополнительная информация на главной |
+| `order-dialog` | Модальное окно: `order-dialog__title` |
+| `order-form` | Заявка: `order-form__field`, `order-form__label`, `order-form__input`, `order-form__select`, `order-form__textarea`, `order-form__hint`, `order-form__actions` |
+| `button` | Переиспользуемые кнопки и ссылки-кнопки |
+| `success-message` | Сообщение об успешном заполнении заявки |
+| `site-footer` | Общий подвал страниц |
+
+Используемые модификаторы:
+
+- `site-nav__link--active` — текущая страница; семантический `aria-current="page"` сохранён;
+- `product-card--featured` — выделенная первая карточка на главной и в каталоге;
+- `button--primary`, `button--secondary` — основная и второстепенная кнопки;
+- `order-form__field--checkbox`, `order-form__input--checkbox` — поле согласия и его флажок.
+
+При аудите заменены `site-logo` на `site-header__logo`, `form-field` на
+`order-form__field`, `form-actions` на `order-form__actions`. Внутренний контейнер
+шапки получил класс `site-header__inner`, внешний `header` — блок `site-header`.
+Вложенные селекторы наподобие `.site-nav__list a`, `.breadcrumbs span::before`,
+`.product-card .button` и `.filters-form fieldset` заменены прямыми классами.
+Стили по `id` и inline-стили не используются; базовые правила для `body`, ссылок
+и универсальный `box-sizing` остаются общими.
+
+Идентификаторы сохранены для якорей, подписей полей и JavaScript. Класс
+`product-card__button` по-прежнему используется в `js/main.js` для кнопок заказа
+на главной странице. Страницы каталога и контактов не подключают скрипт формы.
+
+## Проверка практической работы 7
+
+1. Открыть три страницы: проверить общее меню и выделение текущей страницы.
+2. Проверить хлебные крошки, якоря и ссылки каталога на главную.
+3. Проверить карточки и боковую форму фильтров: сетка Flexbox/Grid должна сохраниться.
+4. На главной нажать «Заказать» у каждого товара; проверить открытие окна, выбранный товар в скрытом поле `selected-product` и закрытие кнопкой «Закрыть».
+5. Отправить пустую заявку: проверить валидацию и `aria-invalid`. Заполнить обязательные поля и согласие: после отправки окно закрывается, форма очищается и показывается сообщение.
+6. В DevTools проверить прямые БЭМ-селекторы, модификаторы, состояния `:hover` и `:focus-visible`, отсутствие CSS-селекторов по `id` и атрибутов `style`.
 
 ## CSS-архитектура
 

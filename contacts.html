@@ -14,27 +14,27 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <div class="site-header">
-      <a class="site-logo" href="index.html">ShopProject</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">ShopProject</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="contacts.html" aria-current="page">Контакты</a></li>
-          <li><a href="index.html#advantages">Преимущества</a></li>
-          <li><a href="index.html#popular">Популярные товары</a></li>
-          <li><a href="index.html#contacts">Обратная связь</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="contacts.html" aria-current="page">Контакты</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#contacts">Обратная связь</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main class="site-main">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a href="index.html">Главная</a>
-      <span aria-current="page">Контакты</span>
+      <a class="breadcrumbs__link" href="index.html">Главная</a>
+      <span class="breadcrumbs__current" aria-current="page">Контакты</span>
     </nav>
     <section class="section">
       <h1>Контакты</h1>
@@ -46,13 +46,13 @@
       </ul>
     </section>
     <section class="section" id="feedback">
-      <h2>Обратная связь</h2>
+      <h2 class="section__title">Обратная связь</h2>
       <p>Для отправки заявки используйте форму в модальном окне на главной странице. Её открывает кнопка «Заказать» в карточке товара.</p>
-      <a class="button" href="index.html#contacts">Перейти к обратной связи</a>
+      <a class="button button--primary" href="index.html#contacts">Перейти к обратной связи</a>
     </section>
   </main>
 
-  <footer id="contacts">
+  <footer class="site-footer" id="contacts">
     <h2>Обратная связь</h2>
     <p>Для отправки заявки выберите товар на главной странице.</p>
     <a href="index.html#popular">Перейти к товарам и форме заявки</a>
